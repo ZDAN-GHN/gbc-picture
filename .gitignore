@@ -1,0 +1,25 @@
+/.idea/
+
+
+# 后端 - 原始
+/gbc-picture-backend/.idea/
+/gbc-picture-backend/httpTest/
+/gbc-picture-backend/cos_config/
+/gbc-picture-backend/md_casual_note/
+/gbc-picture-backend/src/main/resources/application-local.yml
+/gbc-picture-backend/target/
+
+
+# 后端 - ddd 重构后项目
+/gbc-picture-backend-ddd/.idea/
+/gbc-picture-backend-ddd/httpTest/
+/gbc-picture-backend-ddd/cos_config/
+/gbc-picture-backend-ddd/md_casual_note/
+/gbc-picture-backend-ddd/src/main/resources/application-local.yml
+/gbc-picture-backend-ddd/target/
+
+
+# 前端
+/gbc-picture-frontend/.idea/
+/gbc-picture-frontend/.vscode/
+/gbc-picture-frontend/node_modules/
