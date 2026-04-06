@@ -1,0 +1,82 @@
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: gbc-picture-backend
+
+  redis:
+    database: 0
+    host: localhost
+    #     # docker mirror
+    #    host: 172.31.185.249
+    #    password: foobared
+    port: 6379
+    timeout: 5000
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yu_picture
+    username: root
+    password: root
+
+  session:
+    store-type: redis
+    timeout: 259200000
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+  shardingsphere:
+    datasource:
+      names: yu_picture
+      yu_picture:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/yu_picture
+        username: root
+        password: root
+    rules:
+      sharding:
+        tables:
+          picture:
+            actual-data-nodes: yu_picture.picture # 动态分表
+            table-strategy:
+              standard:
+                sharding-column: spaceId
+                sharding-algorithm-name: picture_sharding_algorithm  # 使用自定义分片算法
+        sharding-algorithms:
+          picture_sharding_algorithm:
+            type: CLASS_BASED
+            props:
+              strategy: standard
+              algorithmClassName: com.zdan.gbcpicturebackend.manager.sharding.PictureShardingAlgorithm
+    props:
+      sql-show: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    enable-sql-runner: true
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+knife4j:
+  enable: true
+  openapi:
+    title: 接口文档
+    version: 1.0
+    group:
+      default:
+        api-rule: package
+        api-rule-resources:
+          - com.zdan.gbcpicturebackend.controller
