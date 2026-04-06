@@ -1,0 +1,50 @@
+package com.zdan.gbcpicturebackend.domain.space.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.util.Date;
+
+import lombok.Data;
+
+/**
+ * 空间用户关联
+ *
+ * @author LXH
+ * @TableName space_user
+ */
+@TableName(value = "space_user")
+@Data
+public class SpaceUser {
+    /**
+     * id
+     */
+    @TableId(type = IdType.AUTO) // 关联表不用雪花算法生成 id 也影响不大
+    private Long id;
+
+    /**
+     * 空间 id
+     */
+    private Long spaceId;
+
+    /**
+     * 用户 id
+     */
+    private Long userId;
+
+    /**
+     * 空间角色：viewer/editor/admin
+     */
+    private String spaceRole;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
+}

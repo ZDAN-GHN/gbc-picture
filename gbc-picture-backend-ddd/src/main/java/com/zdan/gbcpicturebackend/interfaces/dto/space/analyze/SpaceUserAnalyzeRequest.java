@@ -1,0 +1,24 @@
+package com.zdan.gbcpicturebackend.interfaces.dto.space.analyze;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * 空间用户上传行为分析请求
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class SpaceUserAnalyzeRequest extends SpaceAnalyzeRequest {
+
+    private static final long serialVersionUID = -6589085226548469357L;
+
+    /**
+     * 用户 ID
+     */
+    private Long userId;
+
+    /**
+     * 时间维度：day / week / month
+     */
+    private String timeDimension;
+}
